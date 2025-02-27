@@ -16,10 +16,6 @@ export interface CountryResponse {
     population: number
 }
 
-const sortCountries = () => {
-
-}
-
 export const getCountries = async (sortBy: "population" | "name" | "population" = "population") => {
     const countriesRes = await fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,area,region');
     const countries: Country[] = await countriesRes.json();
