@@ -1,0 +1,77 @@
+.filtersForm {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    padding-right: 20px;
+}
+
+.select {
+    height: 2.5rem;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 2px solid var(--color-dark-gray);
+}
+
+.checkboxFieldset {
+    display: inline-flex;
+    gap: 12px 12px;
+    flex-wrap: wrap;
+}
+.checkboxLegend, .statusLegend {
+    margin-bottom: 10px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+.checkboxLabel {
+    display: inline-block;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.checkboxLabel:hover {
+    background-color: var(--color-dark-gray);
+}
+.checkbox {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkboxLabel:has(+ .checkbox:checked) {
+    background-color: var(--color-dark-gray);
+}
+
+.checkboxLabel:has(+ .checkbox:focus-visible) {
+    outline: 1px solid var(--foreground);
+}
+
+.statusFieldset {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.statusCheckbox {
+    width: 22px;
+    height: 22px;
+}
+
+.statusCheckboxWrapper {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.statusCheckbox[data-state="checked"] {
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
+}
+
+.statusCheckbox[data-state="checked"] span {
+    background-color: var(--color-blue);
+    color: white;
+}
+
+.statusCheckbox[data-state="checked"] svg {
+    width: 20px;
+    height: 20px;
+}

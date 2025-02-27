@@ -1,0 +1,45 @@
+.flagImage {
+    border-radius: 6px;
+}
+
+.tableRow {
+    border: 0;
+}
+
+.tableHeader {
+    position: sticky;
+    top: 0;
+    background-color: var(--background);
+    border-bottom: 2px solid var(--color-dark-gray);
+}
+
+.tableHeader th {
+    width: calc(85% / 4);
+}
+
+.tableHeader th:first-child {
+    width: 15%;
+}
+
+@media screen and (width < 1024px) {
+    .tableHeader th:not(:first-child) {
+        width: calc(85% / 3);
+    }
+}
+
+.tableHeader tr {
+    border: 0;
+}
+
+.tableRow td {
+    padding: 1rem 0;
+}
+
+@media screen and (width < 1024px) {
+    .tableHeader th:last-child {
+        display: none;
+    }
+    .tableRow td:last-child {
+        display: none;
+    }
+}
