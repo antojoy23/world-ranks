@@ -6,10 +6,11 @@ import styles from './picture.module.css';
 interface PictureProps {
     alt: string,
     mobileImage: string,
-    desktopImage: string
+    desktopImage: string,
+    classes: string
 }
 
-export default function Picture({ alt, mobileImage, desktopImage }: PictureProps) {
+export default function Picture({ alt, mobileImage, desktopImage, classes }: PictureProps) {
     const common = { alt: alt, priority: true }
     const {
         props: desktopProps
@@ -28,7 +29,7 @@ export default function Picture({ alt, mobileImage, desktopImage }: PictureProps
         src: mobileImage,
     })
     return (
-        <picture className={styles.picture}>
+        <picture className={`${styles.picture} ${classes}`}>
             <source media='(max-width: 640px)' width={mobileProps.width} height={mobileProps.height} srcSet={mobileProps.srcSet} />
             <img {...desktopProps} />
         </picture>

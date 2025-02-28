@@ -10,7 +10,7 @@
   --outline-color: rgba(40, 43, 48, 0.05);
   --color-blue: #4E80EE;
   --color-black: #000000;
-  --color-dark-gray: #282B30;
+  --color-secondary: #f9f9f9;
   --color-light-gray: #6C727F;
 
   --font-weight-normal: 500;
@@ -22,19 +22,20 @@
   --font-size-sm: 0.875rem;
   --font-size-xs: 0.75rem;
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.87 0 0);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --border: var(--color-secondary);
+  --input: var(--foreground);
+  --ring: var(--foreground);
+  --accent: var(--color-secondary);
+  --accent-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1B1D1F;
-    --foreground: #D2D5DA;
-    --outline-color: rgba(210, 213, 218, 0.05);
-  }
+html[data-theme="dark"] {
+  --background: #1B1D1F;
+  --foreground: #D2D5DA;
+  --color-secondary: #282B30;
+  --outline-color: rgba(210, 213, 218, 0.05);
 }
 
 html,
@@ -48,6 +49,7 @@ body {
   font-family: var(--font-be-vietnam-pro);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 * {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use } from 'react';
 
 import {
     Table,
@@ -12,25 +12,61 @@ import { CountryResponse } from '@/app/actions/getCountries';
 import Image from 'next/image';
 
 import styles from './rankTable.module.css';
+import { CountriesContext } from '@/app/context/CountriesContext';
+import TableLoader from './tableLoader';
+import TableError from './tableError';
 
-export default function RankTable({ countries }: { countries: CountryResponse[] | undefined }) {
+const formatNumber = (value: number) => {
+    return new Intl.NumberFormat("en-US").format(
+        value,
+    );
+}
+
+export default function RankTable() {
+    const countriesContext = use(CountriesContext);
+    const { countries, hasError, isLoading } = countriesContext || {};
 
     const resolveFlag = (flag: CountryResponse["flag"], countryName: CountryResponse["name"]) => {
-        if (!flag) {
-            return <div>Flag placeholder</div>
-        } else {
-            return <Image className={styles.flagImage} src={flag} alt={`Flag of ${countryName}`} width={70} height={42} />
+        let imageNode = null;
+        if (flag) {
+            imageNode = <Image
+                className={styles.flagImage}
+                src={flag}
+                alt={`Flag of ${countryName}`}
+                width={0}
+                height={0}
+            />
         }
+        return (
+            <div className={styles.flagImageContainer}>
+                {imageNode}
+            </div>
+        )
+    }
+
+    if (hasError) {
+        return <TableError />
+    }
+
+    if (isLoading) {
+        return <TableLoader />
     }
 
     const renderTableRows = () => {
         if (!countries) return null
+        if (countries.length === 0) {
+            return (
+                <TableRow className={styles.tableRow}>
+                    <TableCell colSpan={5} className={styles.tableEmpty}>No countries found. Please try changing the filters.</TableCell>
+                </TableRow>
+            )
+        }
         return countries.map((country) => {
             return <TableRow className={styles.tableRow} key={country.name}>
                 <TableCell>{resolveFlag(country.flag, country.name)}</TableCell>
                 <TableCell>{country.name}</TableCell>
-                <TableCell>{country.population}</TableCell>
-                <TableCell>{country.area}</TableCell>
+                <TableCell>{formatNumber(country.population)}</TableCell>
+                <TableCell>{formatNumber(country.area)}</TableCell>
                 <TableCell>{country.region}</TableCell>
             </TableRow>
         })
@@ -43,7 +79,7 @@ export default function RankTable({ countries }: { countries: CountryResponse[] 
                     <TableHead>Flag</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Population</TableHead>
-                    <TableHead>Area(km<sub>2</sub>)</TableHead>
+                    <TableHead>Area(km<sup>2</sup>)</TableHead>
                     <TableHead>Region</TableHead>
                 </TableRow>
             </TableHeader>

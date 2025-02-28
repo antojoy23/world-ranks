@@ -9,15 +9,44 @@
     height: 2.5rem;
     padding: 0 10px;
     border-radius: 10px;
-    border: 2px solid var(--color-dark-gray);
+    border: 2px solid var(--outline-color);
+    cursor: pointer;
 }
 
-.checkboxFieldset {
+.selectContent {
+    border-radius: 10px;
+}
+
+.selectItem {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.selectFieldset:disabled .select{
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.checkboxFieldset:disabled .checkboxLabel:hover {
+    background-color: transparent;
+}
+
+.checkboxFieldset:disabled .checkboxLabel {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.statusFieldset:disabled .statusCheckbox,
+.statusFieldset:disabled .statusCheckboxLabel {
+    cursor: not-allowed;
+}
+
+.checkboxFieldset, .selectFieldset {
     display: inline-flex;
     gap: 12px 12px;
     flex-wrap: wrap;
 }
-.checkboxLegend, .statusLegend {
+.checkboxLegend, .statusLegend, .selectLegend {
     margin-bottom: 10px;
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
@@ -30,7 +59,7 @@
     cursor: pointer;
 }
 .checkboxLabel:hover {
-    background-color: var(--color-dark-gray);
+    background-color: var(--color-secondary);
 }
 .checkbox {
     position: absolute;
@@ -38,7 +67,7 @@
 }
 
 .checkboxLabel:has(+ .checkbox:checked) {
-    background-color: var(--color-dark-gray);
+    background-color: var(--color-secondary);
 }
 
 .checkboxLabel:has(+ .checkbox:focus-visible) {
@@ -54,6 +83,11 @@
 .statusCheckbox {
     width: 22px;
     height: 22px;
+    cursor: pointer;
+}
+
+.statusCheckboxLabel {
+    cursor: pointer;
 }
 
 .statusCheckboxWrapper {

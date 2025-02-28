@@ -20,10 +20,15 @@
     border-radius: 8px;
     padding: 12px 10px;
     padding-inline-start: 36px;
-    background-color: var(--color-dark-gray);
+    background-color: var(--color-secondary);
     color: var(--foreground);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-normal);
+}
+
+.search:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .search::placeholder {

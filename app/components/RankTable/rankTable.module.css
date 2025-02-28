@@ -1,7 +1,3 @@
-.flagImage {
-    border-radius: 6px;
-}
-
 .tableRow {
     border: 0;
 }
@@ -10,7 +6,7 @@
     position: sticky;
     top: 0;
     background-color: var(--background);
-    border-bottom: 2px solid var(--color-dark-gray);
+    border-bottom: 2px solid var(--color-secondary);
 }
 
 .tableHeader th {
@@ -32,7 +28,11 @@
 }
 
 .tableRow td {
-    padding: 1rem 0;
+    padding-top: 2.5rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-semibold);
 }
 
 @media screen and (width < 1024px) {
@@ -42,4 +42,21 @@
     .tableRow td:last-child {
         display: none;
     }
+}
+
+.flagImageContainer {
+    width: 80px;
+    height: 50px;
+}
+
+.flagImage {
+    border-radius: 6px;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.tableEmpty {
+    text-align: center;
 }

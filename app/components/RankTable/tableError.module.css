@@ -1,0 +1,14 @@
+.tableError {
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+}
+
+@media screen and (width < 768px) {
+    .tableError {
+        margin-top: 10px;
+    }
+}
