@@ -49,8 +49,8 @@ export default function RankFilters() {
     const countriesContext = use(CountriesContext);
     const { isLoading, hasError, updateFilters, filterCountries } = countriesContext || {};
     const [state, formAction] = useActionState((_oldFilters: FilterState, newFilters: FilterState) => {
-        updateFilters && updateFilters(newFilters)
-        filterCountries && filterCountries();
+        if (updateFilters) updateFilters(newFilters)
+        if (filterCountries) filterCountries();
         return newFilters;
     }, initialState);
     const regionsRef = useRef(new Set<string>());
