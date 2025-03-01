@@ -17,7 +17,6 @@ export const getFilteredCountries = (countries: CountryResponse[], filters: Filt
     let filteredCountries = countries;
     if (filters) {
         if (filters.regions.length > 0) {
-            console.log("filter regions ", filters.regions, countries[0].region)
             filteredCountries = filteredCountries.filter((country) => filters.regions.some((region) => region === country.region.toLowerCase()));
         }
         if (filters.status.length > 0) {
@@ -32,9 +31,9 @@ export const getFilteredCountries = (countries: CountryResponse[], filters: Filt
     }
     if (search?.length > 0) {
         filteredCountries = filteredCountries.filter((country) => {
-            if (country.name.toLowerCase().includes(search)) return true;
-            if (country.region.toLowerCase().includes(search)) return true;
-            if (country.subRegion.toLowerCase().includes(search)) return true;
+            if (country.name.toLowerCase().includes(search.toLowerCase())) return true;
+            if (country.region.toLowerCase().includes(search.toLowerCase())) return true;
+            if (country.subRegion.toLowerCase().includes(search.toLowerCase())) return true;
             return false;
         });
     }

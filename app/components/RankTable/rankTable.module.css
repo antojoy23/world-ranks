@@ -39,7 +39,7 @@
     .tableHeader th:last-child {
         display: none;
     }
-    .tableRow td:last-child {
+    .tableRow td:last-child:not(.tableEmpty) {
         display: none;
     }
 }
