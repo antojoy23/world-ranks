@@ -7,6 +7,7 @@ import styles from './neighbouringCountries.module.css';
 export default async function NeighbouringCountries({ borders }: { borders: string[] }) {
 
     const { countries } = await getCountriesByCode(borders);
+    await new Promise(r => setTimeout(r, 10000));
 
     return countries?.map((country) => {
         return (
