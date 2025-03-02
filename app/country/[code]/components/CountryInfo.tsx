@@ -1,16 +1,16 @@
 import { Country, Currency } from '@/app/actions/getCountries';
 import Image from 'next/image';
-import React, { ReactNode } from 'react'
+import React, { Suspense } from 'react'
 
 import styles from './countryInfo.module.css';
 import formatNumber from '@/app/utils/formatNumber';
+import NeighbouringCountries from './NeighbouringCountries';
+import NeighbourContriesLoader from './NeighbourContriesLoader';
 
 export default async function CountryInfo({
-    country,
-    neighbouringCountries
+    country
 }: {
-    country: Country,
-    neighbouringCountries: ReactNode
+    country: Country
 }) {
 
     const detailedInfos = [
@@ -81,7 +81,9 @@ export default async function CountryInfo({
                 <section className={styles.borderFlagsSection}>
                     <h4 className={styles.neighbourCountriesTitle}>Neighbouring countries</h4>
                     <div className={styles.neighbourFlagsContainer}>
-                        {neighbouringCountries}
+                        <Suspense fallback={<NeighbourContriesLoader />}>
+                            <NeighbouringCountries borders={country.borders} />
+                        </Suspense>
                     </div>
                 </section>
             </section>

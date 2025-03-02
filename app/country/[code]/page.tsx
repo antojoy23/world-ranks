@@ -1,8 +1,7 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import CountryInfo from './components/CountryInfo';
 
 import styles from './page.module.css';
-import NeighbouringCountries from './components/NeighbouringCountries';
 import { getCountryByCode } from '@/app/actions/getCountries';
 
 export default async function page({
@@ -17,17 +16,9 @@ export default async function page({
 
     if (!country) return; //Show some error screen
 
-    const neighbouringCountries = () => {
-        return (
-            <Suspense fallback={<div>Loading ..... </div>}>
-                <NeighbouringCountries borders={country.borders} />
-            </Suspense>
-        )
-    }
-
     return (
         <main className={styles.main}>
-            <CountryInfo country={country} neighbouringCountries={neighbouringCountries()} />
+            <CountryInfo country={country} />
         </main>
     )
 }

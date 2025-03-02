@@ -22,3 +22,15 @@
     object-fit: contain;
     margin: 0 auto;
 }
+
+.loader {
+    width: 100%;
+    height: 90%;
+    border-radius: 6px;
+}
+
+.nameLoader {
+    width: 100%;
+    height: 1rem;
+    border-radius: 8px;
+}
