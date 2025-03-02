@@ -15,12 +15,8 @@ import styles from './rankTable.module.css';
 import { CountriesContext } from '@/app/context/CountriesContext';
 import TableLoader from './tableLoader';
 import TableError from './tableError';
-
-const formatNumber = (value: number) => {
-    return new Intl.NumberFormat("en-US").format(
-        value,
-    );
-}
+import Link from 'next/link';
+import formatNumber from '@/app/utils/formatNumber';
 
 export default function RankTable() {
     const countriesContext = use(CountriesContext);
@@ -62,13 +58,15 @@ export default function RankTable() {
             )
         }
         return countries.map((country) => {
-            return <TableRow className={styles.tableRow} key={country.name}>
-                <TableCell>{resolveFlag(country.flag, country.name)}</TableCell>
-                <TableCell>{country.name}</TableCell>
-                <TableCell>{formatNumber(country.population)}</TableCell>
-                <TableCell>{formatNumber(country.area)}</TableCell>
-                <TableCell>{country.region}</TableCell>
-            </TableRow>
+            return (
+                <TableRow className={styles.tableRow} key={country.name}>
+                    <TableCell><Link href={`/country/${country.code}`}>{resolveFlag(country.flag, country.name)}</Link></TableCell>
+                    <TableCell><Link href={`/country/${country.code}`}>{country.name}</Link></TableCell>
+                    <TableCell>{formatNumber(country.population)}</TableCell>
+                    <TableCell>{formatNumber(country.area)}</TableCell>
+                    <TableCell>{country.region}</TableCell>
+                </TableRow>
+            )
         })
     }
 

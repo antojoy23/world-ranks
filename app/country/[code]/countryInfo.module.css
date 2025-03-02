@@ -1,0 +1,118 @@
+
+
+.countryInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countryFlagContainer {
+    width: 250px;
+    margin-top: -50px;
+    margin-bottom: 1.8rem;
+}
+
+.countryFlag {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+.countryName {
+    font-size: var(--font-size-heading);
+    font-weight: var(--font-weight-semibold);
+}
+
+.countryOfficialName {
+    font-size: var(--font-size-normal);
+}
+
+.metaInfoSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+@media screen and (width > 768px) {
+    .metaInfoSection {
+        gap: 2.5rem;
+    }
+}
+
+.metaInfoWrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    padding: 0.35rem 0;
+}
+
+.metaInfoTitle {
+    font-size: var(--font-size-sm);
+    padding: 0.45rem 1rem;
+}
+
+.metaInfoValue {
+    padding: 0.45rem 1rem;
+    border-left: 1px solid var(--background);
+}
+
+.infoRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 1.2rem;
+    border-bottom: 1px solid var(--color-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.infoRow:first-child {
+    border-top: 1px solid var(--color-secondary);
+}
+
+.borderFlagsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem;
+}
+
+.neighbourCountriesTitle {
+    font-size: var(--font-size-sm);
+}
+
+.borderCountryName {
+    font-size: var(--font-size-xs);
+}
+
+.neighbourFlagsContainer {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.neighbourFlagsContainer > div {
+    height: 120px;
+}
+
+.neighbourFlagContainer {
+    width: 100px;
+    height: 80px;
+    margin-bottom: 2px;
+}
+
+.neighbourFlag {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 6px;
+    object-fit: contain;
+}

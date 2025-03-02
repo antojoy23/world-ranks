@@ -11,10 +11,18 @@ type CountryContext = {
     hasError: boolean,
     filterCountries: () => void,
     updateFilters: (filters: FilterState) => void,
-    updateSearchTerm: (searchTerm: string) => void,
+    updateSearchTerm: (searchTerm: string) => void
 }
 
 export const CountriesContext = createContext<CountryContext | null>(null);
+
+const mapCountriesToCode = (countries: CountryResponse[]) => {
+    const countryCodeMap = new Map();
+    for (let i = 0; i < countries.length; i++) {
+        countryCodeMap.set(countries[i].code, i);
+    }
+    return countryCodeMap;
+}
 
 export default function CountriesProvider({ children }: { children: ReactNode }) {
     const [countries, setCountries] = useState<CountryResponse[]>([]);
@@ -22,6 +30,7 @@ export default function CountriesProvider({ children }: { children: ReactNode })
     const [hasError, setHasError] = useState(false);
 
     const originalCountriesRef = useRef<CountryResponse[]>([]);
+    const originalCountriesCodeMappingRef = useRef<Map<string, number>>(new Map());
     const filtersRef = useRef<FilterState>(null);
     const searchTermRef = useRef<string>('');
 
@@ -47,6 +56,7 @@ export default function CountriesProvider({ children }: { children: ReactNode })
             }
             if (countries) {
                 originalCountriesRef.current = countries;
+                originalCountriesCodeMappingRef.current = mapCountriesToCode(countries);
                 setCountries(countries);
                 setIsLoading(false);
             }

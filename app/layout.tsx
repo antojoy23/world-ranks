@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro } from "next/font/google";
+import CountriesProvider from "./context/CountriesContext";
+import Image from "next/image";
+
+import styles from './layout.module.css';
 import "./globals.css";
+import Picture from "./components/Picture/index.";
+import Link from "next/link";
 
 const BeVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -21,7 +27,28 @@ export default function RootLayout({
   return (
     <html data-theme="dark" lang="en">
       <body className={`${BeVietnamPro.variable}`}>
-        {children}
+        <header>
+          <section className={styles.heroImageContainer}>
+            <Link href={'/'}>
+              <Image
+                className={styles.logo}
+                src="/assets/Logo.svg"
+                width={174}
+                height={24}
+                alt={"Logo for the world ranks app"}
+              />
+            </Link>
+            <Picture
+              classes={styles.heroBgImage}
+              alt="An image showing the world from space and also having the website title - Word Ranks"
+              desktopImage="/assets/hero-image.jpg"
+              mobileImage="/assets/hero-image-sm.jpg"
+            />
+          </section>
+        </header>
+        <CountriesProvider>
+          {children}
+        </CountriesProvider>
       </body>
     </html>
   );

@@ -1,107 +1,73 @@
-.heroImageContainer {
-  display: flex;
-  justify-content: center;
-  background-color: var(--color-black);
-  height: 225px;
-}
-
-@media screen and (width > 768px) {
-  .heroImageContainer {
-    height: 300px;
-  }
-}
-
-.heroBgImage img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.logo {
-  width: 174px;
-  height: auto;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-@media screen and (width > 768px) {
-  .logo {
-    top: 120px;
-  }
-}
-
-.main {
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width:  calc(100vw - 20px);
-  height: calc(max(100vh, 1000px));
-  background-color: var(--background);
-  outline: 1px solid var(--outline-color);
-  outline-offset: -1px;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0 5px 10px;
-}
-
-@media screen and (width > 768px) {
-  .main {
-    top: 220px;
-    width: calc(min(1280px, 100vw - 80px));
-    height: calc(100vh - 260px);
-  }
-}
-
 .rankSection {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 120px minmax(250px, auto) 1fr;
-  grid-row-gap: 2rem;
-  grid-template-areas:
-    "rankHeader"
-    "rankFilters"
-    "rankTable";
-  padding: 20px;
-  height: 100%;
-}
-
-@media screen and (width > 768px) {
-  .rankSection {
-    grid-template-columns: 280px 1fr;
-    grid-template-rows: 100px 1fr;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 120px minmax(250px, auto) 1fr;
+    grid-row-gap: 2rem;
     grid-template-areas:
-      "rankHeader rankHeader"
-      "rankFilters rankTable";
-    grid-row-gap: 0.85rem;
-    padding-top: 0;
+      "rankHeader"
+      "rankFilters"
+      "rankTable";
+    padding: 20px;
+    height: 100%;
   }
-}
+  
+  @media screen and (width > 768px) {
+    .rankSection {
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: 100px 1fr;
+      grid-template-areas:
+        "rankHeader rankHeader"
+        "rankFilters rankTable";
+      grid-row-gap: 0.85rem;
+      padding-top: 0;
+    }
+  }
+  
+  .rankHeader {
+    grid-area: rankHeader;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  @media screen and (width > 768px) {
+    .rankHeader {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .rankFilters {
+    grid-area: rankFilters;
+  }
+  
+  .rankTable {
+    grid-area: rankTable;
+    overflow: auto;
+  }
+  
+  .rankTable > div {
+    max-height: 100%;
+  }
 
-.rankHeader {
-  grid-area: rankHeader;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  .main {
+    position: relative;
+    margin-top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width:  calc(100vw - 20px);
+    height: calc(max(100vh, 1000px));
+    background-color: var(--background);
+    outline: 1px solid var(--outline-color);
+    outline-offset: -1px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 10px;
 }
 
 @media screen and (width > 768px) {
-  .rankHeader {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
-.rankFilters {
-  grid-area: rankFilters;
-}
-
-.rankTable {
-  grid-area: rankTable;
-  overflow: auto;
-}
-
-.rankTable > div {
-  max-height: 100%;
+    .main {
+        width: calc(min(1280px, 100vw - 80px));
+        height: calc(100vh - 260px);
+    }
 }

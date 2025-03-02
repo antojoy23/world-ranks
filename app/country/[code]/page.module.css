@@ -1,0 +1,19 @@
+.main {
+    position: relative;
+    margin-top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width:  100vw;
+    margin-bottom: 1rem;
+    background-color: var(--background);
+    outline: 1px solid var(--outline-color);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 5px 10px;
+}
+
+@media screen and (width > 768px) {
+    .main {
+        width: calc(min(800px, 100vw - 40px));
+        outline-offset: -1px;
+    }
+}
