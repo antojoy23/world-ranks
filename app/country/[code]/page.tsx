@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 import React from 'react'
 import CountryInfo from './CountryInfo';
 
