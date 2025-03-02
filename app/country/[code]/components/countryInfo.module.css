@@ -13,15 +13,19 @@
 
 .countryFlagContainer {
     width: 250px;
+    height: 160px;
     margin-top: -50px;
     margin-bottom: 1.8rem;
 }
 
 .countryFlag {
-    width: 100%;
+    width: auto;
     height: auto;
     max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
     border-radius: 10px;
+    margin: 0 auto;
 }
 
 .countryName {
@@ -83,14 +87,6 @@
     padding: 1.2rem;
 }
 
-.neighbourCountriesTitle {
-    font-size: var(--font-size-sm);
-}
-
-.borderCountryName {
-    font-size: var(--font-size-xs);
-}
-
 .neighbourFlagsContainer {
     display: flex;
     gap: 1.5rem;
@@ -100,19 +96,4 @@
 
 .neighbourFlagsContainer > div {
     height: 120px;
-}
-
-.neighbourFlagContainer {
-    width: 100px;
-    height: 80px;
-    margin-bottom: 2px;
-}
-
-.neighbourFlag {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 6px;
-    object-fit: contain;
 }

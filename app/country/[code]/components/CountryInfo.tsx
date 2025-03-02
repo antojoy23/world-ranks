@@ -1,40 +1,17 @@
-'use client';
-import { Country, CountryFlags, Currency, getCountriesByCode, getCountryByCode } from '@/app/actions/getCountries';
+import { Country, Currency } from '@/app/actions/getCountries';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import React, { ReactNode } from 'react'
 
 import styles from './countryInfo.module.css';
 import formatNumber from '@/app/utils/formatNumber';
 
-export default function CountryInfo({
-    code
+export default async function CountryInfo({
+    country,
+    neighbouringCountries
 }: {
-    code: string
+    country: Country,
+    neighbouringCountries: ReactNode
 }) {
-
-    const [country, setCountry] = useState<Country>();
-    const [borders, setBorders] = useState<CountryFlags[]>();
-
-    useEffect(() => {
-        const getCountryDetails = async () => {
-            const { country } = await getCountryByCode(code);
-            setCountry(country)
-        }
-        getCountryDetails();
-    }, [code])
-
-    useEffect(() => {
-        const getBorders = async () => {
-            if (country?.borders) {
-                const { countries: borderCountries } = await getCountriesByCode(country?.borders);
-                setBorders(borderCountries);
-            }
-        }
-
-        getBorders();
-    }, [country]);
-
-    if (!country) return;
 
     const detailedInfos = [
         {
@@ -73,39 +50,6 @@ export default function CountryInfo({
         })
     }
 
-    const neighboringCountriesSection = () => {
-        let flagNodes;
-        if (!borders) {
-            flagNodes = (
-                <>
-                    <div>Loading</div>
-                    <div>Loading</div>
-                    <div>Loading</div>
-                    <div>Loading</div>
-                </>
-            )
-        } else {
-            flagNodes = borders.map((border) => {
-                return (
-                    <div className={styles.neighbourFlagInfoContainer} key={border.name.common}>
-                        <div className={styles.neighbourFlagContainer}>
-                            <Image
-                                src={border.flags.svg}
-                                width={0}
-                                height={0}
-                                alt={`Flag of ${border.name.common}`}
-                                priority={true}
-                                className={styles.neighbourFlag}
-                            />
-                        </div>
-                        <span className={styles.borderCountryName}>{border.name.common}</span>
-                    </div>
-                )
-            })
-        }
-        return flagNodes;
-    }
-
     return (
         <article className={styles.countryInfoContainer}>
             <header className={styles.header}>
@@ -137,7 +81,7 @@ export default function CountryInfo({
                 <section className={styles.borderFlagsSection}>
                     <h4 className={styles.neighbourCountriesTitle}>Neighbouring countries</h4>
                     <div className={styles.neighbourFlagsContainer}>
-                        {neighboringCountriesSection()}
+                        {neighbouringCountries}
                     </div>
                 </section>
             </section>
