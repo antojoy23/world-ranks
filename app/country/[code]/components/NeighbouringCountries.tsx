@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react'
 
 import styles from './neighbouringCountries.module.css';
+import Link from 'next/link';
 
 export default async function NeighbouringCountries({ borders }: { borders: string[] }) {
 
@@ -10,19 +11,21 @@ export default async function NeighbouringCountries({ borders }: { borders: stri
 
     return countries?.map((country) => {
         return (
-            <div className={styles.neighbourFlagInfoContainer} key={country.name.common}>
-                <div className={styles.neighbourFlagContainer}>
-                    <Image
-                        src={country.flags.svg}
-                        width={0}
-                        height={0}
-                        alt={`Flag of ${country.name.common}`}
-                        priority={true}
-                        className={styles.neighbourFlag}
-                    />
+            <Link href={`/country/${country.cca3}`} key={country.cca3}>
+                <div className={styles.neighbourFlagInfoContainer}>
+                    <div className={styles.neighbourFlagContainer}>
+                        <Image
+                            src={country.flags.svg}
+                            width={0}
+                            height={0}
+                            alt={`Flag of ${country.name.common}`}
+                            priority={true}
+                            className={styles.neighbourFlag}
+                        />
+                    </div>
+                    <span className={styles.borderCountryName}>{country.name.common}</span>
                 </div>
-                <span className={styles.borderCountryName}>{country.name.common}</span>
-            </div>
+            </Link>
         )
     })
 

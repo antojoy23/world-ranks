@@ -27,7 +27,8 @@ export interface Country {
 
 export interface CountryFlags {
     flags: { svg: string },
-    name: { common: string }
+    name: { common: string },
+    cca3: string
 }
 
 export interface CountryResponse {
@@ -40,11 +41,6 @@ export interface CountryResponse {
     unMemberStatus: boolean,
     subRegion: string,
     borders: string[]
-}
-
-export interface CountryCodeResponse {
-    flag: string,
-    name: string
 }
 
 const FIELDS_STRING = "cca3,name,flags,population,area,region,unMember,subregion"
@@ -84,7 +80,7 @@ export const getCountries = async () => {
 
 export const getCountriesByCode = async (codes: string[]) => {
     try {
-        const countriesRes = await fetchRequest(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}&fields=name,flags`);
+        const countriesRes = await fetchRequest(`https://restcountries.com/v3.1/alpha?codes=${codes.join(',')}&fields=name,flags,cca3`);
         const countries: CountryFlags[] = await countriesRes.json();
         return { error: false, countries };
     } catch (ex) {
