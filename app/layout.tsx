@@ -3,6 +3,8 @@ import { Be_Vietnam_Pro } from "next/font/google";
 import CountriesProvider from "./context/CountriesContext";
 import Image from "next/image";
 
+import { unstable_ViewTransition as ViewTransition } from 'react'
+
 import styles from './layout.module.css';
 import "./globals.css";
 import Picture from "./components/Picture/index.";
@@ -46,9 +48,11 @@ export default function RootLayout({
             />
           </section>
         </header>
-        <CountriesProvider>
-          {children}
-        </CountriesProvider>
+        <ViewTransition>
+          <CountriesProvider>
+            {children}
+          </CountriesProvider>
+        </ViewTransition>
       </body>
     </html>
   );

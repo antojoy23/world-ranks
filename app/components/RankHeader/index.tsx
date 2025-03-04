@@ -1,16 +1,24 @@
-import React, { use } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Search from '../icons/Search';
 
 import styles from './rankHeader.module.css';
 import { CountriesContext } from '@/app/context/CountriesContext';
+import useDebounce from '@/app/hooks/useDebounce';
 
 export default function RankHeader({ classes }: { classes: string }) {
 
     const countriesContext = use(CountriesContext);
 
+    const [searchTerm, setSearchTerm] = useState("");
+    const debouncedSearchTerm = useDebounce(searchTerm, 200);
+
     const { countries = [], hasError, isLoading, updateSearchTerm } = countriesContext || {};
 
-    const countryCount = countries.length ?? 0
+    const countryCount = countries.length ?? 0;
+
+    useEffect(() => {
+        updateSearchTerm && updateSearchTerm(debouncedSearchTerm)
+    }, [debouncedSearchTerm]);
 
     return (
         <header className={classes}>
@@ -21,7 +29,8 @@ export default function RankHeader({ classes }: { classes: string }) {
                     disabled={hasError || isLoading}
                     className={`${styles.search} focus-visible:border-ring focus-visible:ring-ring/50 shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px]`}
                     placeholder='Search by Name, Region, Subregion'
-                    onChange={(e) => updateSearchTerm && updateSearchTerm(e.target.value)} type='search'
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} type='search'
                 />
             </div>
         </header>

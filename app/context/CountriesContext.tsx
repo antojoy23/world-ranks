@@ -45,7 +45,8 @@ export default function CountriesProvider({ children }: { children: ReactNode })
 
     const filterCountries = () => {
         const newCountries = getFilteredCountries(originalCountriesRef.current, filtersRef.current, searchTermRef.current);
-        setCountries(getSortedCountries(newCountries, filtersRef.current?.sort_by));
+        const sortedCountries = getSortedCountries(newCountries, filtersRef.current?.sort_by);
+        setCountries(sortedCountries);
     }
 
     useEffect(() => {

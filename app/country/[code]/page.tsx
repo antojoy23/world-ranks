@@ -39,7 +39,7 @@ export default async function page({
             value: Object.values(country.currencies).reduce((acc: string[], currency: Currency) => {
                 acc.push(currency.name);
                 return acc;
-            }, [])
+            }, []).join(', ')
         },
         {
             name: 'Continents',
