@@ -17,7 +17,7 @@ export default function RankHeader({ classes }: { classes: string }) {
     const countryCount = countries.length ?? 0;
 
     useEffect(() => {
-        updateSearchTerm && updateSearchTerm(debouncedSearchTerm)
+        if (updateSearchTerm) updateSearchTerm(debouncedSearchTerm)
     }, [debouncedSearchTerm]);
 
     return (
